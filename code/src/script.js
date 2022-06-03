@@ -3,18 +3,16 @@ import Planet from './planet.js'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap from 'gsap'
-import sunImageSource from '/textures/sun1.jpg'
-import earthImageSource from '/textures/earth.jpg'
+import sunImageSource from '/textures/sun.jpg'
 import mercuryImageSource from '/textures/mercury.jpg'
-import jupiterImageSource from '/textures/jupiter.jpg'
 import venusImageSource from '/textures/venus.jpg'
+import earthImageSource from '/textures/earth.jpg'
 import marsImageSource from '/textures/mars.jpg'
-
-
-/**
- * class
- */
-// classes
+import jupiterImageSource from '/textures/jupiter.jpg'
+import saturnImageSource from '/textures/saturn.png'
+import uranusImageSource from '/textures/uranus.jpg'
+import neptuneImageSource from '/textures/neptune.jpg'
+import plutoImageSource from '/textures/pluto.jpg'
 
 
 /**
@@ -29,11 +27,6 @@ const scene = new THREE.Scene()
 /**
  * Object
  */
-// const geometry = new THREE.BoxBufferGeometry(1, 1 ,1)
-// const material = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-// const mesh = new THREE.Mesh(geometry, material)
-
-
 const solarStstem = new THREE.Group()
 const texture = new THREE.TextureLoader()
 const sunTexture = texture.load(sunImageSource)
@@ -43,36 +36,62 @@ const sunGeometry = new THREE.SphereGeometry(1,32,32)
 const sunMaterial = new THREE.MeshBasicMaterial({map:sunTexture})
 const sunMesh = new THREE.Mesh(sunGeometry,sunMaterial)
 solarStstem.add(sunMesh)
-sunMesh.scale.set(4,4,4)
-
-const venus = new Planet(1, 15, venusImageSource);
-    const venusMesh = venus.getMesh();
-    let venusSystem = new THREE.Group();
-    venusSystem.add(venusMesh);
-const jupiter = new Planet(2,-13,jupiterImageSource)
-    const jupiterMesh = jupiter.getMesh()
-    let jupiterSystem = new THREE.Group()
-    jupiterSystem.add(jupiterMesh)
-const mercury = new Planet(2,-8,mercuryImageSource)
+sunMesh.scale.set(8,8,8)
+scene.add(solarStstem)
+//Mercury
+const mercury = new Planet(1.2,10,mercuryImageSource)
     const mercuryMesh = mercury.getMesh()
     let mercurySystem = new THREE.Group()
     mercurySystem.add(mercuryMesh)
-const earth = new Planet(1,6,earthImageSource)
+    solarStstem.add(mercurySystem)
+//Venus
+const venus = new Planet(1.5, 15, venusImageSource)
+    const venusMesh = venus.getMesh()
+    let venusSystem = new THREE.Group()
+    venusSystem.add(venusMesh)
+    solarStstem.add(venusSystem)
+//Earth
+const earth = new Planet(1.5,20,earthImageSource)
     const earthMesh = earth.getMesh()
     let earthSystem = new THREE.Group()
     mercurySystem.add(earthMesh)
-const mars = new Planet(3,20,marsImageSource)
+    solarStstem.add(earthSystem)
+//Mars
+const mars = new Planet(1,25,marsImageSource)
     const marsMesh = mars.getMesh()
     let marsSystem = new THREE.Group()
     marsSystem.add(marsMesh)
-
-solarStstem.add(earthSystem)
-solarStstem.add(venusSystem)
-solarStstem.add(jupiterSystem)
-solarStstem.add(mercurySystem)
-solarStstem.add(marsSystem)
-scene.add(solarStstem)
-
+    solarStstem.add(marsSystem)
+//Jupiter
+const jupiter = new Planet(2.5,-30,jupiterImageSource)
+    const jupiterMesh = jupiter.getMesh()
+    let jupiterSystem = new THREE.Group()
+    jupiterSystem.add(jupiterMesh)
+    solarStstem.add(jupiterSystem)
+//Saturn
+const saturn = new Planet(2,-38,saturnImageSource)
+    const saturnMesh = saturn.getMesh()
+    let saturnSystem = new THREE.Group()
+    saturnSystem.add(saturnMesh)
+    solarStstem.add(saturnSystem)
+//Uranus
+const uranus = new Planet(1.4,-50,uranusImageSource)
+    const uranusMesh = uranus.getMesh()
+    let uranusSystem = new THREE.Group()
+    uranusSystem.add(uranusMesh)
+    solarStstem.add(uranusSystem)
+//Neptune
+const neptune = new Planet(1.4,-45,neptuneImageSource)
+    const neptuneMesh = neptune.getMesh()
+    let neptuneSystem = new THREE.Group()
+    neptuneSystem.add(neptuneMesh)
+    solarStstem.add(neptuneSystem)
+//Pluto
+const pluto = new Planet(0.8,55,plutoImageSource)
+    const plutoMesh = pluto.getMesh()
+    let plutoSystem = new THREE.Group()
+    plutoSystem.add(plutoMesh)
+    solarStstem.add(plutoSystem)
 
 
 /**
@@ -103,7 +122,7 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.z = 40
+camera.position.z = 30
 scene.add(camera)
 
 // Controls
