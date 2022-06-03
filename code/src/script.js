@@ -1,36 +1,21 @@
 import './style.css'
+import Planet from './planet.js'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 import gsap from 'gsap'
-import sunImageSource from '/textures/1.jpg'
-import earthImageSource from '/textures/2.jpg'
+import sunImageSource from '/textures/sun1.jpg'
+import earthImageSource from '/textures/earth.jpg'
 import mercuryImageSource from '/textures/mercury.jpg'
 import jupiterImageSource from '/textures/jupiter.jpg'
 import venusImageSource from '/textures/venus.jpg'
+import marsImageSource from '/textures/mars.jpg'
 
 
 /**
  * class
  */
 // classes
-export default class Planet {
-    constructor(radius, positionX, textureFile) {
-      this.radius = radius;
-      this.positionX = positionX;
-      this.textureFile = textureFile;
-    }
-  
-    getMesh() {
-      if (this.mesh === undefined || this.mesh === null) {
-        const geometry = new THREE.SphereGeometry(this.radius,32,32);
-        const texture = new THREE.TextureLoader().load(this.textureFile);
-        const material = new THREE.MeshBasicMaterial({ map: texture });
-        this.mesh = new THREE.Mesh(geometry, material);
-        this.mesh.position.x += this.positionX;
-      }
-      return this.mesh;
-    }
-  }
+
 
 /**
  * Base
@@ -76,11 +61,16 @@ const earth = new Planet(1,6,earthImageSource)
     const earthMesh = earth.getMesh()
     let earthSystem = new THREE.Group()
     mercurySystem.add(earthMesh)
+const mars = new Planet(3,20,marsImageSource)
+    const marsMesh = mars.getMesh()
+    let marsSystem = new THREE.Group()
+    marsSystem.add(marsMesh)
 
-    solarStstem.add(earthSystem)
+solarStstem.add(earthSystem)
 solarStstem.add(venusSystem)
 solarStstem.add(jupiterSystem)
 solarStstem.add(mercurySystem)
+solarStstem.add(marsSystem)
 scene.add(solarStstem)
 
 
@@ -113,7 +103,7 @@ window.addEventListener('resize', () =>
  */
 // Base camera
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-camera.position.z = 20
+camera.position.z = 40
 scene.add(camera)
 
 // Controls
