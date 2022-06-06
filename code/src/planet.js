@@ -11,7 +11,7 @@ export default class Planet {
       if (this.mesh === undefined || this.mesh === null) {
         const geometry = new THREE.SphereGeometry(this.radius,32,32);
         const texture = new THREE.TextureLoader().load(this.textureFile);
-        const material = new THREE.MeshBasicMaterial({ map: texture });
+        const material = new THREE.MeshStandardMaterial({ map: texture });
         this.mesh = new THREE.Mesh(geometry, material);
         this.mesh.position.x += this.positionX;
       }
