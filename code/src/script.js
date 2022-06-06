@@ -164,7 +164,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default THREE.PCFShadowMap
 
 
 
-//light 1
+//light 
 const light = new THREE.SpotLight(0xffffff);
 light.position.set(1, 0, 0);
 light.castShadow = true; // default false
@@ -224,7 +224,7 @@ tick()
  */
 
 const parameters = {}
-parameters.count = 10000
+parameters.count = 40000
 parameters.size = 0.05
 let geometry = null
 let material = null
@@ -235,9 +235,9 @@ const generateGalaxy = () => {
     const positions = new Float32Array(parameters.count * 500)
     for (let i = 0; i < parameters.count; i++) {
         const i3 = i * 3
-        positions[i3 + 0] = (Math.random() - 0.5) * 100
-        positions[i3 + 1] = (Math.random() - 0.5) * 100
-        positions[i3 + 2] = (Math.random() - 0.5) * 100
+        positions[i3 + 0] = (Math.random() - 0.5) * 800
+        positions[i3 + 1] = (Math.random() - 0.5) * 800
+        positions[i3 + 2] = (Math.random() - 0.5) * 800
     }
     geometry.setAttribute(
         'position',
@@ -343,8 +343,4 @@ const generateGalaxy1 = () => {
 }
 
 generateGalaxy1()
-
-
-
-
 
