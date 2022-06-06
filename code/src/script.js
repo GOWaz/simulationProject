@@ -225,7 +225,7 @@ tick()
 
 const parameters = {}
 parameters.count = 10000
-parameters.size = 0.09
+parameters.size = 0.05
 let geometry = null
 let material = null
 let points = null
