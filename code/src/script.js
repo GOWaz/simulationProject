@@ -111,6 +111,8 @@ let plutoSystem = new THREE.Group()
 plutoMesh.receiveShadow = true
 plutoSystem.add(plutoMesh)
 
+console.log(solarStstem)
+
 solarStstem.add(plutoSystem)
 
 
